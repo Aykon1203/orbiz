@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
-  },
+  }, 
   "dependencies": {
     "@googlemaps/google-maps-services-js": "^3.4.2",
     "@mantine/core": "^8.3.16",
