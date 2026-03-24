@@ -1,8 +1,18 @@
-// src/lib/prisma.ts
-import { PrismaClient } from '../generated/client'
+import { Pool } from 'pg'
+import { PrismaPg } from '@prisma/adapter-pg'
+import { PrismaClient } from '@prisma/client'
+
+const connectionString = process.env.DATABASE_URL
 
 const prismaClientSingleton = () => {
-  return new PrismaClient()
+  // 1. Maak een connectie-pool voor Postgres
+  const pool = new Pool({ connectionString })
+  
+  // 2. Maak de adapter die Prisma 7 nodig heeft
+  const adapter = new PrismaPg(pool)
+  
+  // 3. Start de client met de adapter
+  return new PrismaClient({ adapter })
 }
 
 declare global {
