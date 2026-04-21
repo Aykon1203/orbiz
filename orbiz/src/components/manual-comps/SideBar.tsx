@@ -27,8 +27,8 @@ import {
 const navItems = [
   { title: "Home", url: "/", icon: Home },
   { title: "Find Leads", url: "/search", icon: Search },
-  { title: "My Lists", url: "/lijsten", icon: List },
-  // { title: "My Leads", url: "/leads", icon: Users }, basically same as /lijsten
+  { title: "My Lists", url: "/lists", icon: List },
+  // { title: "My Leads", url: "/leads", icon: Users }, basically same as /lists
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 

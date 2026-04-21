@@ -17,10 +17,10 @@ model Lead {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   listId        String?
-  list          Lijst?   @relation(fields: [listId], references: [id])
+  list          List?    @relation(fields: [listId], references: [id])
 }
 
-model Lijst {
+model List {
   id          String   @id @default(cuid())
   name        String
   description String?

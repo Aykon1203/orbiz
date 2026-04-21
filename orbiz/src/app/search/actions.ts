@@ -24,7 +24,7 @@ export async function saveLeadAction(data: {
       },
     })
 
-    revalidatePath("/lijsten")
+    revalidatePath("/lists")
     return { success: true }
   } catch (error) {
     console.error(error)

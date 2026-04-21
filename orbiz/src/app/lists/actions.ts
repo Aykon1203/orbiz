@@ -4,14 +4,14 @@ import prisma from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 
 // dit zijn de serveractions die dingen naar de database sturen
-export async function createLijst(formData:FormData){
+export async function createList(formData:FormData){
     const name = formData.get("name") as string
     const description = formData.get("description") as string
 
     if (!name) return { error: "Name is required" }
 
   try {
-    await prisma.lijst.create({
+    await prisma.list.create({
       data: {
         name,
         description,
@@ -19,7 +19,7 @@ export async function createLijst(formData:FormData){
     })
 
     // Dit zorgt ervoor dat de lijstpagina direct ververst wordt
-    revalidatePath("/lijsten")
+    revalidatePath("/lists")
     return { success: true }
   } catch (error) {
     return { error: "Something went wrong while creating the list." }

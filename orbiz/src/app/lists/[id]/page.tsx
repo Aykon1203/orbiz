@@ -22,9 +22,9 @@ export default function ListLeadsPage() {
       setError(null)
 
       try {
-        const res = await fetch(`/api/lijsten/${listId}`)
+        const res = await fetch(`/api/lists/${listId}`)
         if (!res.ok) {
-          throw new Error("Kon de lijst niet ophalen")
+          throw new Error("Could not fetch.")
         }
 
         const data = await res.json()
@@ -32,7 +32,7 @@ export default function ListLeadsPage() {
         setListName(data.list?.name ?? "")
       } catch (err) {
         console.error(err)
-        setError("Er ging iets mis bij het ophalen van de leads.")
+        setError("Something went wrong during fetch.")
       } finally {
         setLoading(false)
       }
@@ -42,7 +42,7 @@ export default function ListLeadsPage() {
   }, [listId])
 
   const handleDeleteLead = async (leadId: string) => {
-    const confirmed = window.confirm("Weet je zeker dat je deze lead wilt verwijderen?")
+    const confirmed = window.confirm("Are you sure you want to delete this lead?")
     if (!confirmed) return
 
     try {
@@ -57,7 +57,7 @@ export default function ListLeadsPage() {
       setResults((prev) => prev.filter((lead) => lead.id !== leadId))
     } catch (err) {
       console.error(err)
-      setError("Verwijderen van lead is mislukt.")
+      setError("Deleting lead failed.")
     }
   }
 
@@ -69,9 +69,9 @@ export default function ListLeadsPage() {
 
       <div>
 
-        <h1 className="text-2xl font-bold">Leads In Lijst</h1>
+        <h1 className="text-2xl font-bold">Leads In List</h1>
 
-        <p className="text-slate-500">{listName || "Overzicht van alle leads in deze lijst."}</p>
+        <p className="text-slate-500">{listName || "Overview of all leads in this list"}</p>
 
       </div>
 
@@ -81,7 +81,7 @@ export default function ListLeadsPage() {
 
         <div className="flex justify-center py-10">
 
-          <p className="text-sm text-slate-500 animate-pulse">Leads ophalen...</p>
+          <p className="text-sm text-slate-500 animate-pulse">Fetching leads...</p>
 
         </div>
 

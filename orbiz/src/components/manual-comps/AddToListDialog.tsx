@@ -9,12 +9,12 @@ import { saveLeadAction } from "@/app/search/actions"
 
 export function AddToListModal({ 
   lead, 
-  lijsten, 
+  lists, 
   open, 
   onOpenChange 
 }: { 
   lead: any, 
-  lijsten: any[], 
+  lists: any[], 
   open: boolean, 
   onOpenChange: (open: boolean) => void 
 }) {
@@ -57,7 +57,7 @@ export function AddToListModal({
                 <SelectValue placeholder="Choose a list..." />
               </SelectTrigger>
               <SelectContent>
-                {lijsten.map((l) => (
+                {lists.map((l) => (
                   <SelectItem key={l.id} value={l.id}>{l.name}</SelectItem>
                 ))}
               </SelectContent>

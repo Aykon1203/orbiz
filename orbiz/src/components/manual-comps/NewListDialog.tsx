@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Plus } from "lucide-react"
-import { createLijst } from "@/app/lijsten/actions"
+import { createList } from "@/app/lists/actions"
 
 export function NewListDiaglog(){
     const [open, setOpen]=useState(false)
@@ -26,7 +26,7 @@ export function NewListDiaglog(){
         setLoading(true);
 
         const formData=new FormData(event.currentTarget)
-        const result=await createLijst(formData)
+        const result=await createList(formData)
 
         if (result.success) {
         setOpen(false) 

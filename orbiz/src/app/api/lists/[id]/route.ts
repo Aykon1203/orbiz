@@ -9,7 +9,7 @@ export async function GET(_request: Request, context: RouteContext) {
   const { id } = await context.params
 
   try {
-    const list = await prisma.lijst.findUnique({
+    const list = await prisma.list.findUnique({
       where: { id },
       include: {
         leads: {

@@ -10,7 +10,7 @@ import { ShowWhichListDialog } from "../../components/manual-comps/ShowWhichList
 export default function SearchPage() {
   const searchParams = useSearchParams()
   const [results, setResults] = useState([])
-  const [lijsten, setLijsten] = useState([]) // Staat voor je mappen/lijsten
+  const [lists, setLists] = useState([]) // Staat voor je mappen/lists
   const [loading, setLoading] = useState(false)
   
   // Modal states
@@ -40,9 +40,9 @@ export default function SearchPage() {
 
   // 2. Fetch existing lists (to display in the modal)
   useEffect(() => {
-    fetch("/api/lijsten") // Simple GET route that calls prisma.lijst.findMany()
+    fetch("/api/lists") // Simple GET route that calls prisma.list.findMany()
       .then(res => res.json())
-      .then(data => setLijsten(data))
+      .then(data => setLists(data))
   }, [])
 
   const handleOpenModal = (lead: SearchResult) => {
@@ -77,7 +77,7 @@ export default function SearchPage() {
       {selectedLead && (
         <AddToListModal 
           lead={selectedLead}
-          lijsten={lijsten}
+          lists={lists}
           open={isModalOpen}
           onOpenChange={setIsModalOpen}
         />
