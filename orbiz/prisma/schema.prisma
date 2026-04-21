@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Lead {
+  id            String   @id @default(cuid())
+  googlePlaceId String   @unique
+  name          String
+  address       String?
+  website       String?
+  phoneNumber   String?
+  status        Status   @default(OPEN)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  listId        String?
+  list          Lijst?   @relation(fields: [listId], references: [id])
+}
+
+model Lijst {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  leads       Lead[]
+}
+
+enum Status {
+  OPEN
+  CONTACTED
+  REJECTED
+  CUSTOMER
+}
