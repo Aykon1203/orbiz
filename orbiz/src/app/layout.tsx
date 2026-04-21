@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import SearchBar from "../components/manual-comps/SearchBar";
 
 export const metadata: Metadata = {
-  title: "Portal | AK WebSolutions",
+  title: "Orbiz | AK WebSolutions",
   description: "Lead generation portal by AK WebSolutions",
 };
 
