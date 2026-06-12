@@ -1,10 +1,9 @@
 "use client";
 
 import {
-  Search,
-  Settings,
+  // Settings,
   Home,
-  List, SquareCheck
+  List, 
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -26,10 +25,8 @@ import {
 // Hier definieer je de knoppen van Orbiz
 const navItems = [
   { title: "Home", url: "/", icon: Home },
-  { title: "Find Leads", url: "/search", icon: Search },
   { title: "My Lists", url: "/lists", icon: List },
-  // { title: "My Leads", url: "/leads", icon: Users }, basically same as /lists
-  { title: "Settings", url: "/settings", icon: Settings },
+  // { title: "Settings", url: "/settings", icon: Settings }, not sure what to add here but temp letting it sit here
 ];
 
 export function SideBar() {
@@ -52,7 +49,8 @@ export function SideBar() {
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <hr className="mb-2"></hr>
+          {/* <SidebarGroupLabel className="text-sm">Navigation</SidebarGroupLabel>  not useful */}
           <SidebarGroupContent>
             <SidebarMenu>
               {navItems.map((item) => (
