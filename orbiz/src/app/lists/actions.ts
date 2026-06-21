@@ -28,3 +28,21 @@ export async function createList(formData:FormData){
     
 }
 
+export async function deleteList(id: string){
+
+  try {
+    await prisma.list.delete({
+      where:{
+        id,
+      }
+    })
+
+    // Dit zorgt ervoor dat de lijstpagina direct ververst wordt
+    revalidatePath("/lists")
+    return { success: true }
+  } catch (error) {
+    return { error: "Something went wrong while deleting the list." }
+  }
+
+    
+}

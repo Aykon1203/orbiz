@@ -61,6 +61,12 @@ export default function ListLeadsPage() {
     }
   }
 
+  const handleStatusChange = (leadId: string, status: ListLeads["status"]) => {
+    setResults((prev) =>
+      prev.map((lead) => (lead.id === leadId ? { ...lead, status } : lead))
+    )
+  }
+
 
 
   return (
@@ -95,7 +101,7 @@ export default function ListLeadsPage() {
 
         <DataTable 
 
-          columns={getColumns(handleDeleteLead)} 
+          columns={getColumns(handleDeleteLead, handleStatusChange)} 
 
           data={results} 
 

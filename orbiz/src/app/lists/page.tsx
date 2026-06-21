@@ -34,36 +34,52 @@ export default async function ListsPage() {
       ) : (
         <div className="grid grid-cols-3 py-6 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {lists.map((list) => (
-            <Link key={list.id} href={`/lists/${list.id}`} className="group">
-              <Card className="h-full border-slate-200 transition-all group-hover:border-blue-500 group-hover:shadow-md cursor-pointer overflow-hidden">
-                
-                <CardHeader className="pb-3">
-                  <div className="flex justify-between items-start">
-                    <div className="p-2.5 rounded-lg bg-slate-100 text-slate-600 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
-                      <FolderOpen size={22} />
+            <div key={list.id} className="group relative">
+              <Link href={`/lists/${list.id}`} className="block">
+                <Card className="h-full border-slate-200 transition-all group-hover:border-blue-500 group-hover:shadow-md cursor-pointer overflow-hidden">
+                  <CardHeader className="pb-3">
+                    <div className="flex justify-between items-start">
+                      <div className="p-2.5 rounded-lg bg-slate-100 text-slate-600 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
+                        <FolderOpen size={22} />
+                      </div>
+                      <div className="flex items-center gap-1.5 text-slate-500 text-sm font-medium bg-slate-100 px-2.5 py-1 rounded-full">
+                        <Users size={14} />
+                        {list._count.leads}
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1.5 text-slate-500 text-sm font-medium bg-slate-100 px-2.5 py-1 rounded-full">
-                      <Users size={14} />
-                      {list._count.leads}
+                    <CardTitle className="text-xl mt-4 group-hover:text-blue-600 transition-colors">
+                      {list.name}
+                    </CardTitle>
+                    <CardDescription className="line-clamp-2">
+                      {list.description || "No additional information."}
+                    </CardDescription>
+                  </CardHeader>
+
+                  <CardContent className="flex items-center justify-between pt-2 border-t border-slate-50 mt-auto">
+                    <div className="flex items-center gap-2 text-[11px] text-slate-400 uppercase tracking-wider font-semibold">
+                      <Calendar size={12} />
+                      {new Date(list.createdAt).toLocaleDateString('nl-BE')}
                     </div>
-                  </div>
-                  <CardTitle className="text-xl mt-4 group-hover:text-blue-600 transition-colors">
-                    {list.name}
-                  </CardTitle>
-                  <CardDescription className="line-clamp-2">
-                    {list.description || "No additional information."}
-                  </CardDescription>
-                </CardHeader>
-                
-                <CardContent className="flex items-center justify-between pt-2 border-t border-slate-50 mt-auto">
-                  <div className="flex items-center gap-2 text-[11px] text-slate-400 uppercase tracking-wider font-semibold">
-                    <Calendar size={12} />
-                    {new Date(list.createdAt).toLocaleDateString('nl-BE')}
-                  </div>
-                  <ChevronRight size={16} className="text-slate-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-1" />
-                </CardContent>
-              </Card>
-            </Link>
+                    <ChevronRight size={16} className="text-slate-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-1" />
+                  </CardContent>
+                </Card>
+              </Link>
+
+              {/* <form
+                action={async () => {
+                  await deleteList(list.id)
+                }}
+                className="absolute right-3 top-3 z-10"
+              >
+                <button
+                  type="submit"
+                  aria-label="Delete list"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-slate-400 shadow-sm ring-1 ring-slate-200 transition-colors hover:bg-red-50 hover:text-red-600"
+                >
+                  <Trash2 size={14} />
+                </button>
+              </form> */}
+            </div>
           ))}
         </div>
       )}
